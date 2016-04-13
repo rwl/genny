@@ -10,4 +10,4 @@ type Type interface{}
 // When genny is executed, variables of this type will be replaced with
 // references to the specific types.
 //      var GenericType generic.Number
-type Number float64
+type Number int
