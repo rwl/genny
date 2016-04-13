@@ -34,6 +34,7 @@ var (
 	genericPackage = "generic"
 	genericType    = "generic.Type"
 	genericNumber  = "generic.Number"
+	ignoreBuildTag = "// +build generate"
 	linefeed       = "\r\n"
 )
 var unwantedLinePrefixes = [][]byte{
@@ -89,6 +90,10 @@ func generateSpecific(filename string, in io.ReadSeeker, typeSet map[string]stri
 
 		// does this line contain generic.Type?
 		if strings.Contains(l, genericType) || strings.Contains(l, genericNumber) {
+			comment = ""
+			continue
+		}
+		if strings.Contains(l, ignoreBuildTag) {
 			comment = ""
 			continue
 		}
